@@ -1,4 +1,4 @@
-package netty.echo.obj.client;
+package netty.echoobj.client;
 
 import netty.msgpack.MsgpackDecoder;
 import netty.msgpack.MsgpackEncoder;

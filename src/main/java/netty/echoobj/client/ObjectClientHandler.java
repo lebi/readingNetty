@@ -1,6 +1,6 @@
-package netty.echo.obj.client;
+package netty.echoobj.client;
 
-import netty.echo.obj.model.User;
+import netty.echoobj.model.User;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
@@ -10,8 +10,8 @@ public class ObjectClientHandler extends ChannelHandlerAdapter{
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
 		User[] list=new User[100];
 		System.out.println("active");
-		for(User u:list){
-			u=new User();
+		for(int i=0;i<list.length;i++){
+			User u=new User();
 			u.setAge(10);
 			u.setName("bot");
 			ctx.write(u);
@@ -23,12 +23,18 @@ public class ObjectClientHandler extends ChannelHandlerAdapter{
 	public void channelRead(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
 		System.out.println(msg);
-		ctx.write(msg);
+//		ctx.write(msg);
 	}
 
 	@Override
 	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
 		ctx.flush();
 	}
-
+	
+	@Override
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
+			throws Exception {
+		cause.printStackTrace();
+		ctx.close();
+	}
 }

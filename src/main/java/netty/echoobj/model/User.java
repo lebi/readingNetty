@@ -1,6 +1,11 @@
-package netty.echo.obj.model;
+package netty.echoobj.model;
 
-public class User {
+import java.io.Serializable;
+
+import org.msgpack.annotation.Message;
+
+@Message
+public class User implements Serializable{
 	private String name;
 	private int age;
 	public String getName() {

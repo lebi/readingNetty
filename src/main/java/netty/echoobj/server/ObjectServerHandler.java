@@ -1,6 +1,6 @@
-package netty.echo.obj.server;
+package netty.echoobj.server;
 
-import netty.echo.obj.model.User;
+import netty.echoobj.model.User;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 
@@ -13,6 +13,13 @@ public class ObjectServerHandler extends ChannelHandlerAdapter{
 		System.out.println(user.getAge());
 		System.out.println(user.getName());
 		ctx.writeAndFlush(msg);
+	}
+
+	@Override
+	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
+			throws Exception {
+		cause.printStackTrace();
+		ctx.close();
 	}
 
 }
